@@ -1,0 +1,14 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/main-app/main-app.html",
+  "fragments": [
+    "bower_components/polymer/polymer.html"
+  ],
+  "sources": [
+    "src/**/*",
+    "bower.json"
+  ],
+  "includeDependencies": [
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

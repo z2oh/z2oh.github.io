@@ -1,33 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>jaday</title>
-	<style>
-		html body {
-			height: 100vh;
-			width: 100vw;
-			margin: 0;
-		}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-		#wrapper {
-			height: 100%;
-			width: 100%;
-			text-align: center;
-		}
+    <title>jaday</title>
+    <meta name="description" content="Personal homepage of Jeremy Day">
 
-		#jaday {
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-	</style>
-</head>
-<body>
-	<div id="wrapper">
-		<!-- This is written in the coolvetica font and converted to path based SVG in Inkscape -->
-		<object id="jaday" type="image/svg+xml" data="jaday.svg">
-			Your browser does not support SVG images.
-		</object>
-	</div>
-</body>
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="/src/main-app/main-app.html">
+  </head>
+  <body>
+    <main-app></main-app>
+  </body>
 </html>

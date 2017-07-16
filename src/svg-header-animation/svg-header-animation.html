@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="svg-header-animation">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+
+			.logo {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			/*
+			 * This is to provide some translation interpolation for large mouse movements.
+			 */
+			* {
+				transition: all 100ms;
+			}
+		</style>
+		<div id="container">
+		</div>
+	</template>
+
+	<script>
+		Polymer({
+
+			is: 'svg-header-animation',
+
+			properties: {
+				svgPath: {
+					type: String,
+				},
+				numLayers: {
+					type: Number,
+					value: 5,
+				}
+			},
+			ready: function () {
+				var layers = [];
+				for (var i = 0; i < this.numLayers; i++) {
+					var logoDiv = document.createElement('div');
+					logoDiv.classList += 'logo';
+					var obj = document.createElement('object');
+					obj.type = 'image/svg+xml';
+					obj.data = this.svgPath;
+					obj.id = 'layer' + i;
+					logoDiv.appendChild(obj);
+					Polymer.dom(this.$.container).appendChild(logoDiv);
+
+					var layer = {};
+					layer.id = 'layer' + i;
+					layer.color = this.getRandomColor();
+					layer.xTransform = 0;
+					layer.yTransform = 0;
+					layer.element = obj;
+					layers.push(layer);
+
+					obj.onload = function(layer, event) {
+						var paths = event.target.contentDocument.querySelectorAll('g');
+						for(var i = 0; i < paths.length; i++) {
+							paths[i].style.fill = layer.color;
+						}
+					}.bind(this, layer);
+				}
+				this.set('_layers', layers);
+
+				document.addEventListener('mousemove', function(event) {
+					var centerX = window.innerWidth / 2;
+					var centerY = window.innerHeight / 2;
+					var vecX = event.x - centerX;
+					var vecY = event.y - centerY;
+					var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
+					var normalX = vecX / vecLen;
+					var normalY = vecY / vecLen;
+					this.updateLayerTransforms({x: normalX * 5, y: normalY * 5});
+				}.bind(this));
+				this.updateLayerTransforms({x: 5, y: 5});
+			},
+			getRandomColor: function () {
+				var letters = '0123456789ABCDEF';
+				var color = '#';
+				for (var i = 0; i < 6; i++) {
+					color += letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
+			},
+			updateLayerTransforms: function(normal) {
+				var middleIndex = Math.floor(this._layers.length / 2);
+				var layers = this._layers;
+				for(var i = 0; i < layers.length; i++) {
+					var layer = layers[i];
+					layer.xTransform = normal.x * (i - middleIndex);
+					layer.yTransform = normal.y * (i - middleIndex);
+					layer.element.style.transform = 'translate(' + layer.xTransform + 'px,' + layer.yTransform + 'px)';
+				}
+			},
+		});
+	</script>
+</dom-module>

@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../svg-header-animation/svg-header-animation.html">
+
+<dom-module id="main-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <svg-header-animation svg-path="jaday.svg" num-layers="5"></svg-header-animation>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'main-app',
+
+      properties: {
+      },
+
+    });
+  </script>
+</dom-module>
