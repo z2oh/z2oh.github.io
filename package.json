@@ -1,0 +1,30 @@
+{
+  "name": "z2oh.github.io",
+  "version": "0.1.0",
+  "description": "This is the repository for the homepage of Jeremy Day.",
+  "main": "main.js",
+  "dependencies": {
+    "css-slam": "^1.2.1",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-if": "^2.0.2",
+    "gulp-uglify": "^3.0.0",
+    "merge-stream": "^1.0.1",
+    "polymer-build": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm install && gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/z2oh/z2oh.github.io.git"
+  },
+  "author": "z2on < jadaytime@gmail.com >",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/z2oh/z2oh.github.io/issues"
+  },
+  "homepage": "https://github.com/z2oh/z2oh.github.io#readme"
+}
