@@ -8,11 +8,8 @@
 				pointer-events: none;
 			}
 
-			.logo {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
+			.wrapper {
+				@apply --svg-wrapper-styles;
 			}
 
 			/*
@@ -69,11 +66,11 @@
 			},
 			attachLayers: function(layers) {
 				for(var i = 0; i < layers.length; i++) {
-					var logoDiv = document.createElement('div');
-					logoDiv.classList += 'logo';
-					logoDiv.appendChild(layers[i].element);
-					layers[i].elementWrapper = logoDiv;
-					Polymer.dom(this.$.container).appendChild(logoDiv);
+					var wrapperDiv = document.createElement('div');
+					wrapperDiv.classList += 'wrapper';
+					wrapperDiv.appendChild(layers[i].element);
+					layers[i].elementWrapper = wrapperDiv;
+					Polymer.dom(this.$.container).appendChild(wrapperDiv);
 				}
 				return layers;
 			},
