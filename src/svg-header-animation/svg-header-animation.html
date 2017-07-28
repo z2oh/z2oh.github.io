@@ -38,48 +38,108 @@
 				numLayers: {
 					type: Number,
 					value: 5,
+				},
+				color: {
+					type: String,
+					value: "#FFF"
 				}
 			},
 			ready: function () {
+				var layers = this.generateLayers(this.svgPath, this.numLayers);
+				layers = this.attachLayers(layers);
+				layers = this.determineColors(layers, 'random');
+				layers = this.applyColors(layers);
+				layers = this.applyEffect(layers, '3d');
+				this.set('_layers', layers);
+			},
+			generateLayers: function(svgPath, numLayers) {
 				var layers = [];
-				for (var i = 0; i < this.numLayers; i++) {
-					var logoDiv = document.createElement('div');
-					logoDiv.classList += 'logo';
+				for (var i = 0; i < numLayers; i++) {
 					var obj = document.createElement('object');
 					obj.type = 'image/svg+xml';
 					obj.data = this.svgPath;
 					obj.id = 'layer' + i;
-					logoDiv.appendChild(obj);
-					Polymer.dom(this.$.container).appendChild(logoDiv);
 
 					var layer = {};
 					layer.id = 'layer' + i;
-					layer.color = this.getRandomColor();
-					layer.xTransform = 0;
-					layer.yTransform = 0;
 					layer.element = obj;
 					layers.push(layer);
-
-					obj.onload = function(layer, event) {
-						var paths = event.target.contentDocument.querySelectorAll('g');
-						for(var i = 0; i < paths.length; i++) {
-							paths[i].style.fill = layer.color;
-						}
-					}.bind(this, layer);
 				}
-				this.set('_layers', layers);
-
-				document.addEventListener('mousemove', function(event) {
-					var centerX = window.innerWidth / 2;
-					var centerY = window.innerHeight / 2;
-					var vecX = event.x - centerX;
-					var vecY = event.y - centerY;
-					var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
-					var normalX = vecX / vecLen;
-					var normalY = vecY / vecLen;
-					this.updateLayerTransforms({x: normalX * 5, y: normalY * 5});
-				}.bind(this));
-				this.updateLayerTransforms({x: 5, y: 5});
+				return layers;
+			},
+			attachLayers: function(layers) {
+				for(var i = 0; i < layers.length; i++) {
+					var logoDiv = document.createElement('div');
+					logoDiv.classList += 'logo';
+					logoDiv.appendChild(layers[i].element);
+					layers[i].elementWrapper = logoDiv;
+					Polymer.dom(this.$.container).appendChild(logoDiv);
+				}
+				return layers;
+			},
+			determineColors: function(layers, effect) {
+				for(var i = 0; i < layers.length; i++) {
+					switch(effect) {
+						default:
+						case 'random':
+							layers[i].color = this.getRandomColor();
+							break;
+					}
+				}
+				return layers;
+			},
+			applyColors: function(layers) {
+				for(var j = 0; j < layers.length; j++) {
+					if(layers[j].element.contentDocument !== null) {
+						var paths = layers[j].element.querySelectorAll('g');
+						for(var i = 0; i < paths.length; i++) {
+							paths[i].style.fill = layers[j].color;
+						}
+					}
+					else {
+						layers[j].element.onload = function(layer, event) {
+							var paths = event.target.contentDocument.querySelectorAll('g');
+							for(var i = 0; i < paths.length; i++) {
+								paths[i].style.fill = layer.color;
+							}
+						}.bind(this, layers[j]);
+					}
+				}
+				return layers;
+			},
+			applyEffect: function(layers, effect) {
+				layers.effect && layers.effect();
+				switch(effect) {
+					default:
+					case '3d':
+						var apply = function(layers, normalX, normalY) {
+							var middleIndex = Math.floor(layers.length / 2);
+							for(var i = 0; i < layers.length; i++) {
+								var layer = layers[i];
+								layer.xTransform = normalX * (i - middleIndex);
+								layer.yTransform = normalY * (i - middleIndex);
+								layer.element.style.transform = 'translate(' + layer.xTransform + 'px,' + layer.yTransform + 'px)';
+							}
+						}
+						var func = function(event) {
+							var centerX = window.innerWidth / 2;
+							var centerY = window.innerHeight / 2;
+							var vecX = event.x - centerX;
+							var vecY = event.y - centerY;
+							var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
+							var normalX = vecX / vecLen;
+							var normalY = vecY / vecLen;
+							var middleIndex = Math.floor(layers.length / 2);
+							apply(layers, normalX * 5, normalY * 5);
+						};
+						layers.effect = function() {
+							document.removeEventListener('mousemove', func.bind(this));
+						}.bind(this);
+						document.addEventListener('mousemove', func.bind(this));
+						apply(layers, 5, 5);
+						break;
+				}
+				return layers;
 			},
 			getRandomColor: function () {
 				var letters = '0123456789ABCDEF';
@@ -88,16 +148,6 @@
 					color += letters[Math.floor(Math.random() * 16)];
 				}
 				return color;
-			},
-			updateLayerTransforms: function(normal) {
-				var middleIndex = Math.floor(this._layers.length / 2);
-				var layers = this._layers;
-				for(var i = 0; i < layers.length; i++) {
-					var layer = layers[i];
-					layer.xTransform = normal.x * (i - middleIndex);
-					layer.yTransform = normal.y * (i - middleIndex);
-					layer.element.style.transform = 'translate(' + layer.xTransform + 'px,' + layer.yTransform + 'px)';
-				}
 			},
 		});
 	</script>
