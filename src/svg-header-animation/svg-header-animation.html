@@ -47,7 +47,7 @@
 			ready: function () {
 				var layers = this.generateLayers(this.svgPath, this.numLayers);
 				layers = this.attachLayers(layers);
-				layers = this.determineColors(layers, 'random');
+				layers = this.determineColors(layers, 'gradient');
 				layers = this.applyColors(layers);
 				layers = this.applyEffect(layers, '3d');
 				this.set('_layers', layers);
@@ -78,13 +78,97 @@
 				return layers;
 			},
 			determineColors: function(layers, effect) {
-				for(var i = 0; i < layers.length; i++) {
-					switch(effect) {
-						default:
-						case 'random':
-							layers[i].color = this.getRandomColor();
-							break;
-					}
+				switch(effect) {
+					default:
+					case 'random':
+						for(var i = 0; i < layers.length; i++) {
+							layers[i].color = this.generateColorString(this.getRandomColor());
+						}
+						break;
+					case 'gradient':
+						var colorA = this.getRandomColor();
+						var colorB = this.getRandomColor();
+						// http://www.rapidtables.com/convert/color/rgb-to-hsv.htm
+						var rgbToHsv = function(rgb) {
+							var rPrime = rgb[0]/255;
+							var gPrime = rgb[1]/255;
+							var bPrime = rgb[2]/255;
+							var cMax = Math.max(rPrime, gPrime, bPrime);
+							var cMin = Math.min(rPrime, gPrime, bPrime);
+							var delta = cMax - cMin;
+							var hue = (function(){
+								if(delta === 0) {
+									return 0;
+								}
+								else if(cMax === rPrime) {
+									// modulus operator in javascript happily returns negative values
+									// so we need to make sure it is positive
+									var val = ((gPrime - bPrime)/delta) % 6;
+									if(val < 0) { 
+										val += 6;
+									}
+									return 60 * val;
+								}
+								else if(cMax === gPrime) {
+									return 60 * (((bPrime - rPrime)/delta) + 2);
+								}
+								else if(cMax === bPrime) {
+									return 60 * (((rPrime - gPrime)/delta) + 4);
+								}
+							}());
+							var saturation = (function() {
+								if(cMax === 0) {
+									return 0;
+								}
+								else if (cMax !== 0) {
+									return delta/cMax;
+								}
+							}());
+							var value = cMax;
+							return [hue, saturation, value];
+						}
+						// http://www.rapidtables.com/convert/color/hsv-to-rgb.htm
+						var hsvToRgb = function(hsv) {
+							var h = hsv[0];
+							var s = hsv[1];
+							var v = hsv[2];
+							var c = hsv[2] * hsv[1];
+							var x = c * (1 - Math.abs(((hsv[0] / 60) % 2) - 1));
+							var m = hsv[2] - c;
+							var rPgPbP = (function() {
+								if(0 <= h && h < 60) {
+									return [c, x, 0];
+								}
+								else if(60 <= h && h < 120) {
+									return [x, c, 0];
+								}
+								else if(120 <= h && h < 180) {
+									return [0, c, x];
+								}
+								else if(180 <= h && h < 240) {
+									return [0, x, c];
+								}
+								else if(240 <= h && h < 300) {
+									return [x, 0, c];
+								}
+								else if(300 <= h && h < 360) {
+									return [c, 0, x];
+								}
+							}());
+							return [ (rPgPbP[0] + m) * 255, (rPgPbP[1] + m) * 255, (rPgPbP[2] + m) * 255];
+						}
+						var interpolateColor = function(hsvA, hsvB, percent) {
+							var deltaH = hsvB[0] - hsvA[0];
+							var deltaS = hsvB[1] - hsvA[1];
+							var deltaV = hsvB[2] - hsvA[2];
+							var temp = [hsvA[0] + (deltaH * percent), hsvA[1] + (deltaS * percent), hsvA[2] + (deltaV * percent)];
+							return temp;
+						}
+						var hsvA = rgbToHsv(colorA);
+						var hsvB = rgbToHsv(colorB);
+						for(var i = 0; i < layers.length; i++) {
+							layers[i].color = this.generateColorString(hsvToRgb(interpolateColor(hsvA, hsvB, i / layers.length)));
+						}
 				}
 				return layers;
 			},
@@ -142,13 +226,21 @@
 				return layers;
 			},
 			getRandomColor: function () {
-				var letters = '0123456789ABCDEF';
-				var color = '#';
-				for (var i = 0; i < 6; i++) {
-					color += letters[Math.floor(Math.random() * 16)];
+				var color = [];
+				for (var i = 0; i < 3; i++) {
+					color[i] = Math.floor(Math.random() * 256);
 				}
 				return color;
 			},
+			generateColorString: function(rgb) {
+				return rgb.map(function(val) {
+					return Math.floor(val).toString(16);
+				}).map(function(val) {
+					return ('00' + val).substring(val.length);
+				}).reduce(function(acc, val) {
+					return acc + val;
+				}, '#')
+			}
 		});
 	</script>
 </dom-module>
