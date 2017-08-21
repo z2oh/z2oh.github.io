@@ -2,31 +2,61 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../svg-header-animation/svg-header-animation.html">
+<link rel="import" href="../ttt-learn/ttt-learn.html">
 
 <dom-module id="main-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-        --svg-wrapper-styles: {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    </style>
-    <svg-header-animation svg-path="jaday.svg" num-layers="5"></svg-header-animation>
-  </template>
+	<template>
+		<style>
+			:host {
+				display: block;
+				--svg-wrapper-styles: {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
 
-  <script>
-    Polymer({
+			#toggleSplash {
+				position: fixed;
+				bottom: 5px;
+				right: 5px;
+			}
+		</style>
+		<template is="dom-if" if="[[_splash]]">
+			<svg-header-animation svg-path="jaday.svg" num-layers="5"></svg-header-animation>
+		</template>
+		<template is="dom-if" if="[[!_splash]]">
+			<ttt-learn></ttt-learn>
+		</template>
+		<span id="toggleSplash" on-tap="toggleSplash">[[_toggleText]]</span>
+	</template>
 
-      is: 'main-app',
+	<script>
+		Polymer({
 
-      properties: {
-      },
+			is: 'main-app',
 
-    });
-  </script>
+			properties: {
+				_splash: {
+					type: Boolean,
+					value: true,
+				},
+				_toggleText: {
+					type: String,
+					value: 'Tic-tac-toe ML',
+				},
+			},
+			toggleSplash: function () {
+				this.set('_splash', !this._splash);
+				if (this._splash) {
+					this.set('_toggleText', 'Tic-tac-toe ML');
+				}
+				else {
+					this.set('_toggleText', 'Splash page');
+				}
+			},
+
+		});
+	</script>
 </dom-module>

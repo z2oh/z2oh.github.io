@@ -1,0 +1,534 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+<dom-module id="ttt-learn">
+	<template>
+		<style>
+			:host {
+				font-family: 'PT Serif', serif;
+			}
+
+			#board {
+				border-collapse: collapse;
+			}
+
+			#board>tbody>tr>td {
+				width: 5rem;
+				height: 5rem;
+				text-align: center;
+			}
+
+			.bottom-border {
+				border-bottom: 3px solid black;
+			}
+
+			.right-border {
+				border-right: 3px solid black;
+			}
+
+			.board-text-cell {
+				font-size: 3rem;
+				line-height: 2rem;
+			}
+		</style>
+
+		<table id="board">
+			<tr class="bottom-border">
+				<td class="right-border"><span class="board-text-cell">[[board.0.0]]</span></td>
+				<td class="right-border"><span class="board-text-cell">[[board.0.1]]</span></td>
+				<td><span class="board-text-cell">[[board.0.2]]</span></td>
+			</tr>
+			<tr class="bottom-border">
+				<td class="right-border"><span class="board-text-cell">[[board.1.0]]</span></td>
+				<td class="right-border"><span class="board-text-cell">[[board.1.1]]</span></td>
+				<td><span class="board-text-cell">[[board.1.2]]</span></td>
+			</tr>
+			<tr>
+				<td class="right-border"><span class="board-text-cell">[[board.2.0]]</span></td>
+				<td class="right-border"><span class="board-text-cell">[[board.2.1]]</span></td>
+				<td><span class="board-text-cell">[[board.2.2]]</span></td>
+			</tr>
+		</table>
+		<br/>
+		<span id="formula">[[_formatWeights(playerX.weights)]]</span>
+		<br/>
+		<div>Wins: [[playerX.won]]</div>
+		<div>Losses: [[playerO.won]]</div>
+		<div>Draws: [[draw]]</div>
+		<div>
+			Delay between moves(in ms):
+			<iron-input bind-value="{{delay}}">
+				<input type="number" />
+			</iron-input>
+		</div>
+	</template>
+
+
+	<script>
+		Polymer({
+
+			is: 'ttt-learn',
+
+			properties: {
+				board: {
+					type: Array,
+					value: [['', '', ''], ['', '', ''], ['', '', '']],
+				},
+				history: {
+					type: Array,
+					value: [[0, 0, 0, 0, 0, 0]],
+				},
+				learner: {
+					type: Object,
+					value: {
+						/**
+						 * @param {Array<Array<string>>} boardstate An array of the form [['x', '', 'o'],
+						 																  ['x', '', '' ],
+																						  ['o', '', '' ]]
+							@returns {Array<number>} A vectorized representation of board information
+						 */
+						vectorizeBoardstate: function (boardstate) {
+
+							var numWinningMoves = function (boardstate, player) {
+								var winningRow = 0;
+								var aloneRow = 0;
+								for (var i = 0; i < 3; i++) {
+									var rowCount = 0;
+									var rowEmpty = 0;
+									var columnCount = 0;
+									var columnEmpty = 0;
+									for (var j = 0; j < 3; j++) {
+										if (boardstate[i][j] === player) {
+											rowCount++;
+										}
+										else if (boardstate[i][j] === '') {
+											rowEmpty++;
+										}
+										if (boardstate[j][i] === player) {
+											columnCount++;
+										}
+										else if (boardstate[j][i] === '') {
+											columnEmpty++;
+										}
+									}
+									if (rowEmpty === 2 && rowCount === 1) {
+										aloneRow++;
+									}
+									else if (rowEmpty === 1 && rowCount === 2) {
+										winningRow++;
+									}
+									if (columnEmpty === 2 && columnCount === 1) {
+										aloneRow++;
+									}
+									else if (columnEmpty === 1 && columnCount === 2) {
+										winningRow++;
+									}
+								}
+								var backDiagCount = 0;
+								var backDiagEmpty = 0;
+								var forwardDiagCount = 0;
+								var forwardDiagEmpty = 0;
+								for (var i = 0; i < 3; i++) {
+									if (boardstate[i][i] === player) {
+										backDiagCount++;
+									}
+									else if (boardstate[i][i] === '') {
+										backDiagEmpty++;
+									}
+									if (boardstate[i][2 - i] === player) {
+										forwardDiagCount++;
+									}
+									else if (boardstate[i][2 - i] === '') {
+										forwardDiagEmpty++;
+									}
+								}
+								if (backDiagCount === 1 && backDiagEmpty === 2) {
+									aloneRow++;
+								}
+								else if (backDiagCount === 2 && backDiagEmpty === 1) {
+									winningRow++;
+								}
+								if (forwardDiagCount === 1 && forwardDiagEmpty === 2) {
+									aloneRow++;
+								}
+								else if (forwardDiagCount === 2 && forwardDiagEmpty === 1) {
+									winningRow++;
+								}
+								return [winningRow, aloneRow];
+							}
+
+							var winningAloneX = numWinningMoves(boardstate, 'x');
+							var winningAloneO = numWinningMoves(boardstate, 'o');
+							/**
+
+							// x_1 is the number of x's next to other x's
+							var x_1 = (function(boardstate) {
+								var numConnections = 0;
+								for (var i = 0; i < 3; i++) {
+									for (var j = 0; j < 3; j++) {
+										if(j < 2 && boardstate[i][j] === 'x' && boardstate[i][j+1] === 'x') {
+											numConnections++;
+										}
+										if(i < 2 && boardstate[i][j] === 'x' && boardstate[i+1][j] === 'x') {
+											numConnections++;
+										}
+										if(i === j && i < 2 && boardstate[i][j] === 'x' && boardstate[i+1][j+1] === 'x') {
+											numConnections++;
+										}
+										if(((i === 1 && j === 1) || (i === 2 && j === 0)) && (boardstate[i][j] === 'x' && boardstate[i-1][j+1] === 'x')) {
+											numConnections++;
+										}
+									}
+								}
+								return numConnections;
+							})(boardstate);
+
+							// x_2 is the number of y's next to other y's
+							var x_2 = (function(boardstate) {
+								var numConnections = 0;
+								for (var i = 0; i < 3; i++) {
+									for (var j = 0; j < 3; j++) {
+										if(j < 2 && boardstate[i][j] === 'o' && boardstate[i][j+1] === 'o') {
+											numConnections++;
+										}
+										if(i < 2 && boardstate[i][j] === 'o' && boardstate[i+1][j] === 'o') {
+											numConnections++;
+										}
+										if(i === j && i < 2 && boardstate[i][j] === 'o' && boardstate[i+1][j+1] === 'o') {
+											numConnections++;
+										}
+										if(((i === 1 && j === 1) || (i === 2 && j === 0)) && (boardstate[i][j] === 'o' && boardstate[i-1][j+1] === 'o')) {
+											numConnections++;
+										}
+									}
+								}
+								return numConnections;
+							})(boardstate);
+							*/
+							// x_5 is the number of 3 in a row x's
+							var x_5 = (function (boardstate) {
+								var x_3 = 0;
+								for (var i = 0; i < 3; i++) {
+									if (boardstate[i][0] === 'x' && boardstate[i][1] === 'x' && boardstate[i][2] === 'x') {
+										x_3++;
+									}
+								}
+								for (var j = 0; j < 3; j++) {
+									if (boardstate[0][j] === 'x' && boardstate[1][j] === 'x' && boardstate[2][j] === 'x') {
+										x_3++;
+									}
+								}
+								if (boardstate[0][0] === 'x' && boardstate[1][1] === 'x' && boardstate[2][2] === 'x') {
+									x_3++;
+								}
+								if (boardstate[0][2] === 'x' && boardstate[1][1] === 'x' && boardstate[2][0] === 'x') {
+									x_3++;
+								}
+								return x_3;
+							})(boardstate);
+
+							// x_6 is the number of 3 in a row y's
+							var x_6 = (function (boardstate) {
+								var x_4 = 0;
+								for (var i = 0; i < 3; i++) {
+									if (boardstate[i][0] === 'o' && boardstate[i][1] === 'o' && boardstate[i][2] === 'o') {
+										x_4++;
+									}
+								}
+								for (var j = 0; j < 3; j++) {
+									if (boardstate[0][j] === 'o' && boardstate[1][j] === 'o' && boardstate[2][j] === 'o') {
+										x_4++;
+									}
+								}
+								if (boardstate[0][0] === 'o' && boardstate[1][1] === 'o' && boardstate[2][2] === 'o') {
+									x_4++;
+								}
+								if (boardstate[0][2] === 'o' && boardstate[1][1] === 'o' && boardstate[2][0] === 'o') {
+									x_4++;
+								}
+								return x_4;
+							})(boardstate);
+
+							return [winningAloneX[0], winningAloneO[0], winningAloneX[1], winningAloneO[1], x_5, x_6];
+						},
+						vEstimate: function (w, x) {
+							a = w.reduce(function (prev, currentValue, index) {
+								return prev + currentValue * (index === 0 ? 1 : x[index - 1]);
+							}, 0);
+							return a;
+						},
+					},
+				},
+				playerX: {
+					type: Object,
+					value: {
+						weights: [1, 1, 1, 1, 1, 1, 1],
+						won: 0,
+						playMove: function (boardstate, weights, learner) {
+							var bestMoveValue;
+							var moves = [];
+							for (var i = 0; i < 3; i++) {
+								for (var j = 0; j < 3; j++) {
+									if (boardstate[i][j] === '') {
+										// The joys of JavaScript: deep cloning arrays.
+										var newBoard = JSON.parse(JSON.stringify(boardstate));
+										newBoard[i][j] = 'x';
+										var vectorizeBoardstate = learner.vectorizeBoardstate(newBoard);
+										var moveValue = learner.vEstimate(weights, vectorizeBoardstate);
+										bestMoveValue = bestMoveValue ? Math.max(bestMoveValue, moveValue) : moveValue;
+										moves.push([moveValue, [i, j]]);
+									}
+								}
+							}
+							var bestMoves = moves.filter(function (val) {
+								return val[0] === bestMoveValue;
+							});
+							var move = bestMoves[Math.floor(Math.random() * bestMoves.length)];
+							var resultingBoard = JSON.parse(JSON.stringify(boardstate));
+							resultingBoard[move[1][0]][move[1][1]] = 'x';
+							return resultingBoard;
+						},
+						/**
+						 * @param {Array<Tuple<Array<number>, number>>} pairs An array of vectorized board states and their respective vTrain values
+						 */
+						updateWeights: function (pairs, weights, learner) {
+							var currentWeights = JSON.parse(JSON.stringify(weights));
+							pairs.forEach(function (element) {
+								var vEstimate = learner.vEstimate(weights, element[0]);
+								weights = weights.map(function (w, index) {
+									return w + 0.1 * (element[1] - vEstimate) * (index === 0 ? 1 : element[0][index - 1]);
+								});
+							}, this);
+							return weights;
+						}
+					}
+				},
+				playerO: {
+					type: Object,
+					value: {
+						weights: [1, 1, 1, 1, 1, 1, 1],
+						won: 0,
+						playMove: function (boardstate, weights, learner) {
+							var bestMoveValue;
+							var moves = [];
+							for (var i = 0; i < 3; i++) {
+								for (var j = 0; j < 3; j++) {
+									if (boardstate[i][j] === '') {
+										// The joys of JavaScript: deep cloning arrays.
+										var newBoard = JSON.parse(JSON.stringify(boardstate));
+										newBoard[i][j] = 'o';
+										var vectorizeBoardstate = learner.vectorizeBoardstate(newBoard);
+										var moveValue = learner.vEstimate(weights, vectorizeBoardstate);
+										bestMoveValue = bestMoveValue ? Math.max(bestMoveValue, moveValue) : moveValue;
+										moves.push([moveValue, [i, j]]);
+									}
+								}
+							}
+							var bestMoves = moves.filter(function (val) {
+								return val[0] === bestMoveValue;
+							});
+							var move = bestMoves[Math.floor(Math.random() * bestMoves.length)];
+							var resultingBoard = JSON.parse(JSON.stringify(boardstate));
+							resultingBoard[move[1][0]][move[1][1]] = 'o';
+							return resultingBoard;
+						},
+						playMoveRandom: function (boardstate, weights, learner) {
+							var moves = [];
+							for (var i = 0; i < 3; i++) {
+								for (var j = 0; j < 3; j++) {
+									if (boardstate[i][j] === '') {
+										moves.push([i, j]);
+									}
+								}
+							}
+							var move = moves[Math.floor(Math.random() * moves.length)];
+							var resultingBoard = JSON.parse(JSON.stringify(boardstate));
+							resultingBoard[move[0]][move[1]] = 'o';
+							return resultingBoard;
+						},
+						/**
+						 * @param {Array<Tuple<Array<number>, number>>} pairs An array of vectorized board states and their respective vTrain values
+						 */
+						updateWeights: function (pairs, weights, learner) {
+							var currentWeights = JSON.parse(JSON.stringify(weights));
+							pairs.forEach(function (element) {
+								var vEstimate = learner.vEstimate(weights, element[0]);
+								weights = weights.map(function (w, index) {
+									return w + 0.1 * (element[1] - vEstimate) * (index === 0 ? 1 : element[0][index - 1]);
+								});
+							}, this);
+							return weights;
+						}
+					}
+				},
+				firstPlayer: {
+					type: Number,
+					value: 1,
+				},
+				currentPlayer: {
+					type: Number,
+					value: 1,
+				},
+				currentTurn: {
+					type: Number,
+					value: 0,
+				},
+				delay: {
+					type: Number,
+					value: 10,
+				},
+				draw: {
+					type: Number,
+					value: 0,
+				}
+			},
+			ready: function () {
+				var f = function () {
+					this.playNextMove();
+					setTimeout(f.bind(this), this.delay);
+				};
+				f.bind(this)();
+			},
+			_formatNumber: function (num) {
+				return Number(Math.round(num + 'e' + 2) + 'e-' + 2);
+			},
+			_formatWeights: function (arr) {
+				var str = 'V = ' + this._formatNumber(arr[0]);
+				for (var i = 1; i < arr.length; i++) {
+					str += ' + ' + this._formatNumber(arr[i]) + '(x' + (i - 1) + ')';
+				}
+				return str;
+			},
+			playNextMove: function () {
+				// Perform the move.
+				if (this.currentPlayer === 0) {
+					this.set('board', this.playerX.playMove(this.board, this.playerX.weights, this.learner));
+				}
+				else if (this.currentPlayer === 1) {
+					this.set('board', this.playerO.playMoveRandom(this.board, this.playerO.weights, this.learner));
+				}
+				// Update current turn and player.
+				this.currentTurn++;
+				this.currentPlayer++;
+				this.currentPlayer %= 2;
+
+				// Add the resultant board state to the history.
+				var vectorizedResult = this.learner.vectorizeBoardstate(this.board);
+				this.push('history', vectorizedResult);
+
+				// Check if the game is over.
+				var isGameOver = false;
+				if (vectorizedResult[4] >= 1) {
+					// Player X has won.
+					isGameOver = true;
+					this.set('playerX.won', this.playerX.won + 1);
+
+					var xOffset = (this.firstPlayer + 1) % 2;
+					var oOffset = this.firstPlayer;
+
+					var historyPlayerX = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === xOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, 100];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerX.weights, this.history[index * 2 + (2 - xOffset)])];
+						}
+					}.bind(this));
+
+					var historyPlayerO = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === oOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, -100];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerO.weights, this.history[index * 2 + (2 - oOffset)])];
+						}
+					}.bind(this));
+
+					this.set('playerX.weights', this.playerX.updateWeights(historyPlayerX, this.playerX.weights, this.learner));
+					this.set('playerO.weights', this.playerO.updateWeights(historyPlayerO, this.playerO.weights, this.learner));
+				}
+				else if (vectorizedResult[5] >= 1) {
+					// Player O has won.
+					isGameOver = true;
+					this.set('playerO.won', this.playerO.won + 1);
+
+					var xOffset = (this.firstPlayer + 1) % 2;
+					var oOffset = this.firstPlayer;
+
+					var historyPlayerX = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === xOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, -100];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerX.weights, this.history[index * 2 + (2 - xOffset)])];
+						}
+					}.bind(this));
+
+					var historyPlayerO = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === oOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, 100];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerO.weights, this.history[index * 2 + (2 - oOffset)])];
+						}
+					}.bind(this));
+
+					this.set('playerX.weights', this.playerX.updateWeights(historyPlayerX, this.playerX.weights, this.learner));
+					this.set('playerO.weights', this.playerO.updateWeights(historyPlayerO, this.playerO.weights, this.learner));
+				}
+				else if (this.currentTurn === 9) {
+					// Game is a draw.
+					isGameOver = true;
+					this.set('draw', this.draw + 1);
+
+					var xOffset = (this.firstPlayer + 1) % 2;
+					var oOffset = this.firstPlayer;
+
+					var historyPlayerX = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === xOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, 0];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerX.weights, this.history[index * 2 + (2 - xOffset)])];
+						}
+					}.bind(this));
+
+					var historyPlayerO = this.history.filter(function (value, index) {
+						return index !== 0 && index % 2 === oOffset;
+					}).map(function (val, index, arr) {
+						if (index === arr.length - 1) {
+							return [val, 0];
+						}
+						else {
+							return [val, this.learner.vEstimate(this.playerO.weights, this.history[index * 2 + (2 - oOffset)])];
+						}
+					}.bind(this));
+
+					this.set('playerX.weights', this.playerX.updateWeights(historyPlayerX, this.playerX.weights, this.learner));
+					this.set('playerO.weights', this.playerO.updateWeights(historyPlayerO, this.playerO.weights, this.learner));
+				}
+				if (isGameOver) {
+					// Reset the game.
+					this.set('currentTurn', 0);
+					this.set('currentPlayer', Math.floor(Math.random() * 2));
+					this.set('firstPlayer', this.currentPlayer);
+					this.set('history', [[0, 0, 0, 0, 0, 0]]);
+					this.set('board', [['', '', ''], ['', '', ''], ['', '', ''],]);
+				}
+			},
+
+		});
+	</script>
+</dom-module>
