@@ -22,14 +22,17 @@
 				bottom: 5px;
 				right: 5px;
 			}
+
+			#splash {
+				position: absolute;
+				width: 50vw;
+				height: 50vh;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
 		</style>
-		<template is="dom-if" if="[[_splash]]">
-			<svg-header-animation svg-path="jaday.svg" num-layers="5"></svg-header-animation>
-		</template>
-		<template is="dom-if" if="[[!_splash]]">
-			<ttt-learn></ttt-learn>
-		</template>
-		<span id="toggleSplash" on-tap="toggleSplash">[[_toggleText]]</span>
+		<svg-header-animation id="splash" svg-path="jaday.svg" num-layers="5"></svg-header-animation>
 	</template>
 
 	<script>
@@ -38,23 +41,6 @@
 			is: 'main-app',
 
 			properties: {
-				_splash: {
-					type: Boolean,
-					value: true,
-				},
-				_toggleText: {
-					type: String,
-					value: 'Tic-tac-toe ML',
-				},
-			},
-			toggleSplash: function () {
-				this.set('_splash', !this._splash);
-				if (this._splash) {
-					this.set('_toggleText', 'Tic-tac-toe ML');
-				}
-				else {
-					this.set('_toggleText', 'Splash page');
-				}
 			},
 
 		});

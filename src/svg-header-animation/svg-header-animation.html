@@ -12,6 +12,11 @@
 				@apply --svg-wrapper-styles;
 			}
 
+			object, .wrapper, #container {
+				width: 100%;
+				height: 100%;
+			}
+
 			/*
 			 * This is to provide some translation interpolation for large mouse movements.
 			 */
@@ -202,7 +207,7 @@
 								layer.element.style.transform = 'translate(' + layer.xTransform + 'px,' + layer.yTransform + 'px)';
 							}
 						}
-						var func = function(event) {
+						var funcMouse = function(event) {
 							var centerX = window.innerWidth / 2;
 							var centerY = window.innerHeight / 2;
 							var vecX = event.x - centerX;
@@ -213,10 +218,24 @@
 							var middleIndex = Math.floor(layers.length / 2);
 							apply(layers, normalX * 5, normalY * 5);
 						};
+						var funcTouch = function(event) {
+							event.preventDefault();
+							var centerX = window.innerWidth / 2;
+							var centerY = window.innerHeight / 2;
+							var vecX = event.targetTouches[0].pageX - centerX;
+							var vecY = event.targetTouches[0].pageY - centerY;
+							var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
+							var normalX = vecX / vecLen;
+							var normalY = vecY / vecLen;
+							var middleIndex = Math.floor(layers.length / 2);
+							apply(layers, normalX * 5, normalY * 5);
+						};
 						layers.effect = function() {
-							document.removeEventListener('mousemove', func.bind(this));
+							document.removeEventListener('mousemove', funcMouse.bind(this));
+							document.removeEventListener('touchmove', funcTouch.bind(this));
 						}.bind(this);
-						document.addEventListener('mousemove', func.bind(this));
+						document.addEventListener('mousemove', funcMouse.bind(this));
+						document.addEventListener('touchmove', funcTouch.bind(this), { passive: false, });
 						apply(layers, 5, 5);
 						break;
 				}
