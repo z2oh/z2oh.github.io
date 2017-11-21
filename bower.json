@@ -7,6 +7,11 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
-    "iron-input": "PolymerElements/iron-input#^2.0.0"
+    "iron-input": "PolymerElements/iron-input#^2.0.0",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^2.0.1",
+    "iron-pages": "PolymerElements/iron-pages#^2.0.0"
+  },
+  "resolutions": {
+    "iron-location": "1 - 2"
   }
 }

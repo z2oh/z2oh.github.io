@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 
 <dom-module id="svg-header-animation">
 	<template>
@@ -12,7 +13,7 @@
 				@apply --svg-wrapper-styles;
 			}
 
-			object, .wrapper, #container {
+			object {
 				width: 100%;
 				height: 100%;
 			}
@@ -44,15 +45,67 @@
 				color: {
 					type: String,
 					value: "#FFF"
+				},
+				_center: {
+					type: Object,
+					value: {
+						x: 0,
+						y: 0,
+					}
+				},
+				colorA: {
+					type: String,
+				},
+				colorB: {
+					type: String,
+				},
+				_colorAArr: {
+					type: Array,
+				},
+				_colorBArr: {
+					type: Array,
+				},
+			},
+			behaviors: [
+				Polymer.IronResizableBehavior,
+			],
+			listeners: {
+				'iron-resize': '_computeCenter',
+			},
+			_computeCenter: function() {
+				if(!this._layers) {
+					return;
 				}
+				var center = {};
+				var middleLayer = this._layers[Math.floor(this._layers.length / 2)];
+				var bounds = middleLayer.element.getBoundingClientRect();
+				center.x = bounds.x + bounds.width / 2;
+				center.y = bounds.y + bounds.height / 2;
+				this.set('_center', center);
 			},
 			ready: function () {
 				var layers = this.generateLayers(this.svgPath, this.numLayers);
 				layers = this.attachLayers(layers);
+				this.set('_colorAArr', this._arrFromStr(this.colorA));
+				this.set('_colorBArr', this._arrFromStr(this.colorB));
 				layers = this.determineColors(layers, 'gradient');
 				layers = this.applyColors(layers);
 				layers = this.applyEffect(layers, '3d');
+				setTimeout(this._computeCenter.bind(this), 0);
 				this.set('_layers', layers);
+			},
+			/**
+			 * @param {String} color The color hex string to convert.
+			 */
+			_arrFromStr: function(color) {
+				if(!color) {
+					return;
+				}
+				var arr = [0, 0, 0];
+				arr[0] = parseInt(color.substr(0, 2), 16);
+				arr[1] = parseInt(color.substr(2, 2), 16);
+				arr[2] = parseInt(color.substr(4, 2), 16);
+				return arr;
 			},
 			generateLayers: function(svgPath, numLayers) {
 				var layers = [];
@@ -88,8 +141,8 @@
 						}
 						break;
 					case 'gradient':
-						var colorA = this.getRandomColor();
-						var colorB = this.getRandomColor();
+						var colorA = this._colorAArr || this.getRandomColor();
+						var colorB = this._colorBArr || this.getRandomColor();
 						// http://www.rapidtables.com/convert/color/rgb-to-hsv.htm
 						var rgbToHsv = function(rgb) {
 							var rPrime = rgb[0]/255;
@@ -208,8 +261,8 @@
 							}
 						}
 						var funcMouse = function(event) {
-							var centerX = window.innerWidth / 2;
-							var centerY = window.innerHeight / 2;
+							var centerX = this._center.x;
+							var centerY = this._center.y;
 							var vecX = event.x - centerX;
 							var vecY = event.y - centerY;
 							var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
@@ -220,8 +273,8 @@
 						};
 						var funcTouch = function(event) {
 							event.preventDefault();
-							var centerX = window.innerWidth / 2;
-							var centerY = window.innerHeight / 2;
+							var centerX = this._center.x;
+							var centerY = this._center.y;
 							var vecX = event.targetTouches[0].pageX - centerX;
 							var vecY = event.targetTouches[0].pageY - centerY;
 							var vecLen = Math.sqrt(vecX * vecX + vecY * vecY);
@@ -255,7 +308,7 @@
 					return ('00' + val).substring(val.length);
 				}).reduce(function(acc, val) {
 					return acc + val;
-				}, '#')
+				}, '#');
 			}
 		});
 	</script>
