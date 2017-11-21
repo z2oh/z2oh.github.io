@@ -1,20 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>jaday</title>
-    <meta name="description" content="Personal homepage of Jeremy Day">
+		<title>jaday</title>
+		<meta name="description" content="Personal homepage of Jeremy Day">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+		<!-- See https://goo.gl/OOhYW5 -->
+		<link rel="manifest" href="/manifest.json">
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="/src/main-app/main-app.html">
-  </head>
-  <body>
-    <main-app></main-app>
-  </body>
+		<link rel="import" href="/src/main-app/main-app.html">
+
+		<style>
+			html {
+				--color1: #FFE2CF;
+				--color2: #93A392;
+				--color3: #C69F89;
+				--color4: #EABD6E;
+				--color5: #9C7A6C;
+			}
+
+			html, body {
+				background-color: var(--color3);
+				margin: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<main-app></main-app>
+	</body>
 </html>

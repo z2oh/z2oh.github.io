@@ -1,48 +1,117 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../svg-header-animation/svg-header-animation.html">
-<link rel="import" href="../ttt-learn/ttt-learn.html">
+<link rel="import" href="../styles/colors-import.html">
 
 <dom-module id="main-app">
 	<template>
 		<style>
 			:host {
-				display: block;
+				display: flex;
+				justify-content: space-around;
 				--svg-wrapper-styles: {
 					position: absolute;
-					top: 50%;
+					top: 30px;
+					min-width: 300px;
 					left: 50%;
-					transform: translate(-50%, -50%);
-				}
+					transform: translateX(-50%);
+				};
+				font-family: Helvetica, sans-serif;
+				color: var(--color5);
 			}
 
-			#toggleSplash {
-				position: fixed;
-				bottom: 5px;
-				right: 5px;
+			#content {
+				background-color: var(--color1);
+				height: 100vh;
+				min-width: 320px;
+				max-width: 1200px;
+				width: 70%;
+				display: flex;
+				flex-direction: column;
+				border-style: solid;
+				border-color: white;
+				border-width: 0 10px;
 			}
 
-			#splash {
-				position: absolute;
-				width: 50vw;
-				height: 50vh;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
+			#header {
+				border-style: solid;
+				border-color: white;
+				border-width: 10px 0;
+				height: 150px;
+			}
+
+			#navigation {
+				display: flex;
+				justify-content: space-around;
+				border-bottom: 10px solid white;
+				padding: 1em 0 1em 0;
+				text-decoration: underline;
+			}
+
+			.nav-link > a {
+				color: inherit;
+			}
+
+			.nav-link {
+				cursor: pointer;
+			}
+
+			.hidden {
+				display: none;
+			}
+
+			.content-container {
+				margin: 10px;
 			}
 		</style>
-		<svg-header-animation id="splash" svg-path="jaday.svg" num-layers="5"></svg-header-animation>
+		<app-location route="{{_route}}" use-hash-as-path class="hidden"></app-location>
+		<app-route route="{{_route}}" pattern="/:page" data="{{_selectedData}}" class="hidden"></app-route>
+		<div id="content">
+			<div id="header">
+				<svg-header-animation id="splash" svg-path="jaday.svg" num-layers="3" color-a="93A392" color-b="EABD6E"></svg-header-animation>
+			</div>
+			<div id="navigation">
+				<div on-click="_navItemClicked" page="about" class="nav-link">About</div>
+				<div on-click="_navItemClicked" page="projects" class="nav-link">Projects</div>
+				<div on-click="_navItemClicked" page="writing" class="nav-link">Writing</div>
+				<div class="nav-link"><a href="https://github.com/z2oh">Github</a></div>
+			</div>
+			<div id="main">
+				<iron-pages attr-for-selected="page-name" selected="{{_selectedData.page}}">
+					<div page-name="about" class="content-container">
+						<p>My name is Jeremy Day. I am working on my MS in Computer Science at USC. I am a currently a programmer at <a href="http://krum.io">Krumware</a>.</p>
+					</div>
+					<div page-name="projects" class="content-container">
+						<p>A listing of projects I have worked on will go here. For now, please check my <a href="https://github.com/z2oh">Github</a> to see what I have done.</p>
+					</div>
+					<div page-name="writing" class="content-container">
+						<p>As I write blog posts or articles, I will include them here.</p>
+					</div>
+				</iron-pages>
+			</div>
+		</div>
 	</template>
 
 	<script>
 		Polymer({
 
 			is: 'main-app',
-
 			properties: {
+				_selectedData: {
+					type: Object,
+				}
 			},
-
+			_navItemClicked: function(event) {
+				this.set('_selectedData.page', event.target.getAttribute('page'));
+			},
+			ready: function() {
+				if(!this._selectedData.page) {
+					window.history.pushState({}, null, '/#/about');
+					window.dispatchEvent(new CustomEvent('location-changed'));
+				}
+			},
 		});
 	</script>
 </dom-module>
