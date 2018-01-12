@@ -1,4 +1,4 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+ <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
@@ -24,9 +24,9 @@
 
 			#content {
 				background-color: var(--color1);
-				height: 100vh;
 				min-width: 320px;
 				max-width: 1200px;
+				min-height: 100vh;
 				width: 70%;
 				display: flex;
 				flex-direction: column;
@@ -65,6 +65,15 @@
 			.content-container {
 				margin: 10px;
 			}
+
+			.project-card {
+				border: 2px black solid;
+				padding: 0px 16px 16px 16px;
+				box-shadow: 8px 8px 0px 0px #ccc;
+				margin-bottom: 8px;
+				background-color: var(--color5);
+				color: var(--color1);
+			}
 		</style>
 		<app-location route="{{_route}}" use-hash-as-path class="hidden"></app-location>
 		<app-route route="{{_route}}" pattern="/:page" data="{{_selectedData}}" class="hidden"></app-route>
@@ -84,7 +93,44 @@
 						<p>My name is Jeremy Day. I am working on my MS in Computer Science at USC. I am a currently a programmer at <a href="http://krum.io">Krumware</a>.</p>
 					</div>
 					<div page-name="projects" class="content-container">
-						<p>A listing of projects I have worked on will go here. For now, please check my <a href="https://github.com/z2oh">Github</a> to see what I have done.</p>
+						<div class="project-card">
+							<h3>rp - remote paste</h3>
+							<h4>Technologies: Rust</h4>
+							<p>A simple command line utility to copy and paste files between terminal sessions on any two internet connected device.</p>
+							<a href="https://github.com/z2oh/rp">Source</a>
+						</div>
+						<div class="project-card">
+							<h3>gulp-tabify</h3>
+							<h4>Technologies: Javascript, Gulp</h4>
+							<p><a href="https://gulpjs.com/">Gulp</a> plugin to convert spaces to tabs in source files.</p>
+							<a href="https://github.com/z2oh/gulp-tabify">Source</a>, 
+							<a href="https://www.npmjs.com/package/gulp-tabify">NPM</a>
+						</div>
+						<div class="project-card">
+							<h3>gTAB - Generalized Take and Break</h3>
+							<h4>Technologies: Polymer, Javascript, Bootstrap</h4>
+							<p>A web app to simulate most <a href="https://en.wikipedia.org/wiki/Octal_game">Octal games.</a> This was made as a final project for a course I took on game theory.</p>
+							<a href="https://github.com/gtab-app/gTAB">Source</a>, 
+							<a href="http://gtab.tech">Application</a>
+						</div>
+						<div class="project-card">
+							<h3>jaday.io</h3>
+							<h4>Technologies: Polymer, Javascript, <a href="https://github.com/z2oh/jaday-io-build-bot">Shell</a> (build process), <a href="https://github.com/z2oh/gh-webhook-server">Docker</a> (build process)</h4>
+							<p>The website you are viewing now!</p>
+							<a href="https://github.com/z2oh/z2oh.github.io">Source</a>
+						</div>
+						<div class="project-card">
+							<h3>RedditBackgrounder</h3>
+							<h4>Technologies: Python (<a href="https://praw.readthedocs.io/en/latest/">PRAW</a> and <a href="https://pillow.readthedocs.io/en/5.0.0/">Pillow</a> libraries)</h4>
+							<p>Simple script to fetch an image from a subreddit and set it as the desktop background on Windows.</p>
+							<a href="https://github.com/z2oh/RedditBackgrounder">Source</a>
+						</div>
+						<div class="project-card">
+							<h3>photo-vue</h3>
+							<h4>Technologies: Polymer, Javascript, Electron</h4>
+							<p>Small photo viewer application. Specify a directory and easily view the photos in slideshow format.</p>
+							<a href="https://github.com/z2oh/RedditBackgrounder">Source</a>
+						</div>
 					</div>
 					<div page-name="writing" class="content-container">
 						<p>As I write blog posts or articles, I will include them here.</p>
