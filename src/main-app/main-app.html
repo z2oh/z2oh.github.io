@@ -74,6 +74,16 @@
 				background-color: var(--color5);
 				color: var(--color1);
 			}
+
+			#personal-image {
+				float: left;
+				margin: 4px 10px 0px 0px;
+				border: 1px solid #000000;
+			}
+
+			#about-me {
+				line-height: 1.5em;
+			}
 		</style>
 		<app-location route="{{_route}}" use-hash-as-path class="hidden"></app-location>
 		<app-route route="{{_route}}" pattern="/:page" data="{{_selectedData}}" class="hidden"></app-route>
@@ -90,7 +100,19 @@
 			<div id="main">
 				<iron-pages attr-for-selected="page-name" selected="{{_selectedData.page}}">
 					<div page-name="about" class="content-container">
-						<p>My name is Jeremy Day. I am working on my MS in Computer Science at USC. I am a currently a programmer at <a href="http://krum.io">Krumware</a>.</p>
+						<div class="project-card">
+							<p id="about-me">
+								<img id="personal-image" src="https://avatars0.githubusercontent.com/u/385684" height="128" width="128"/>
+								My name is Jeremy Day. I received my BS in Computer Science and Mathematics from the University of South Carolina in the spring of 2017.
+								I am currently working on my MS in Computer Science at USC, and will graduate in May 2018.
+								I am a software engineer at <a href="http://krum.io">Krumware</a>, working on web applications doing front-end and back-end development.
+								I am very interested in algorithms and writing efficient code. I am the lead author of the USC Code-a-Thon, where I get to apply my love for algorithms in a fun and competitive way. 
+								My current academic studies include digital image processing, artificial neural networks, and machine learning in robotics.
+								Currently, my personal endeavor in programming is to learn the Rust programming language, and thus most of my personal coding projects use this language.
+								I love customizing my programming environment to the extreme. My OS of choice is Arch linux, my editor of choice is Vim, and I use the Colemak keyboard layout.
+								When I'm not programming, I like to play video games, drink craft beer (Goses and IPAs, mostly), and collect vinyl.
+							</p>
+						</div>
 					</div>
 					<div page-name="projects" class="content-container">
 						<div class="project-card">
