@@ -131,9 +131,9 @@ hr {
 
 .main-list li a {
     font-size: 3rem;
-    color: black;
+    color: #009bff;
     text-decoration: none;
-    font-weight: 20;
+    font-weight: 50;
 }
 
 .main-list li a:hover {
