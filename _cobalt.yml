@@ -9,7 +9,7 @@ pages:
 posts:
     title: ~
     description: ~
-    dir: "_posts"
+    dir: "posts"
     drafts_dir: "_drafts"
 site:
     title: "Jeremy Day"
