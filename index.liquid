@@ -1,0 +1,14 @@
+title: feed
+layout: default.liquid
+data:
+    route: feed
+---
+<ul class="feed-list main-list">
+    {% for post in collections.posts.pages %}
+        {% if post.data.type == "blog" %}
+            <li>
+                <a href="{{ post.permalink }}">{{ post.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

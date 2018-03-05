@@ -1,0 +1,14 @@
+title: misc
+layout: default.liquid
+data:
+    route: misc
+---
+<ul class="project-list main-list">
+    {% for post in collections.posts.pages %}
+        {% if post.data.type == "misc" %}
+            <li>
+                <a href="{{ post.permalink }}">{{ post.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
