@@ -7,6 +7,7 @@ html, body {
     line-height: 1.6;
     font-weight: 400;
     font-family: "HelveticNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
 }
 
 footer {
@@ -86,7 +87,7 @@ nav a.menu-item {
 main {
     margin: 0 auto;
     width: 100%;
-    max-width: 80rem;
+    max-width: 84rem;
     padding: 1rem 4rem;
     box-sizing: border-box;
     min-height: 60rem;
@@ -94,6 +95,11 @@ main {
 
 main {
     font-size: 2rem;
+}
+
+article {
+    font-size: 1.6rem;
+    text-align: justify;
 }
 
 img.margin {
@@ -146,7 +152,7 @@ hr {
 
 @media all and (max-width:1024px) {
     main {
-        padding: 2.5rem 4rem;
+        padding: 2rem;
     }
 
     nav {
@@ -216,11 +222,21 @@ hr {
     }
 }
 
+@media all and (max-width:490px) {
+    img.responsive-center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        float: unset;
+    }
+}
+
 /* Everything below this point is taken from Skeleton (http://getskeleton.com/) */
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 2rem;
     font-weight: 300;
+    text-align: left;
 }
 
 h1 {
