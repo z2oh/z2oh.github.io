@@ -15,6 +15,8 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | GB City |
 | Bass Drum of Death | Rip This |
 | Childish Gambino | Because the Internet |
+| Childish Gambino | Camp |
+| Death Grips | The Money Store |
 | Fidlar | Fidlar |
 | Foster the People | Torches |
 | Fuzz | Fuzz |
