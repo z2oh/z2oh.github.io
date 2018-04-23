@@ -14,6 +14,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | Bass Drum of Death |
 | Bass Drum of Death | GB City |
 | Bass Drum of Death | Rip This |
+| Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
 | Childish Gambino | Camp |
 | Death Grips | The Money Store |
@@ -33,6 +34,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Parquet Courts | Light up Gold |
 | Parquet Courts | Sunbathing Animal |
 | Pink Floyd | Dark Side of the Moon |
+| Post Animal | When I Think of You in a Castle |
 | Pup | The Dream is Over |
 | Slayer | Reign in Blood |
 | Sufjan Stevens | Carrie and Lowell |
