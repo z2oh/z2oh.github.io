@@ -22,3 +22,5 @@ ignore:
     - README.md
     - "_build/*"
     - ".git/*"
+syntax_highlight:
+    enabled: false
