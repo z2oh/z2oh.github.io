@@ -1,5 +1,6 @@
 layout: post.liquid
 title: vinyl collection
+description: A list of all the vinyl in my collection.
 data:
     route: misc
     type: misc

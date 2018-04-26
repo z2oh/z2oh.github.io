@@ -7,7 +7,10 @@ data:
     {% for post in collections.posts.pages %}
         {% if post.data.type == "blog" %}
             <li>
-                <a href="{{ post.permalink }}">{{ post.title }}</a>
+                <a href="{{ post.permalink }}"><h3>{{ post.title }}</h3></a>
+                <h5>{{ post.data.published_date_friendly }}</h5>
+                <p>{{ post.description }}</p>
+                <hr>
             </li>
         {% endif %}
     {% endfor %}

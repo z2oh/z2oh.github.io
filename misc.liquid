@@ -7,7 +7,9 @@ data:
     {% for post in collections.posts.pages %}
         {% if post.data.type == "misc" %}
             <li>
-                <a href="{{ post.permalink }}">{{ post.title }}</a>
+                <a href="{{ post.permalink }}"><h3>{{ post.title }}</h3></a>
+                <p>{{ post.description }}</p>
+                <hr>
             </li>
         {% endif %}
     {% endfor %}
