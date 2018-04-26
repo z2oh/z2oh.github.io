@@ -29,6 +29,12 @@ Links to contests (with leaderboards intact):
 
 * [145, Division 4, Lower Division Problem Set](https://www.hackerrank.com/contests/usc-acm-spring-2018-145-division)
 
+The Github repositories for each division have been made public as well. These contain solutions (sometimes in multiple languages or with multiple approaches), test cases, test case generators, and misc. notes or extra information.
+
+* [Upper Division Problems Repository](https://github.com/z2oh/usc_upperdivision_spring2018)
+
+* [Lower Division Problems Repository](https://github.com/z2oh/usc_lowerdivision_spring2018)
+
 Without further ado...
 
 ## Solutions
