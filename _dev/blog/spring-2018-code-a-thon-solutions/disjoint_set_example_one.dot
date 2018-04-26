@@ -1,0 +1,10 @@
+digraph {
+    A:nw -> A:ne
+    B:nw -> B:ne
+    C:nw -> C:ne
+    D:nw -> D:ne
+    E:nw -> E:ne
+    F:nw -> F:ne
+    G:nw -> G:ne
+    H:nw -> H:ne
+}

@@ -1,0 +1,20 @@
+digraph {
+    1 [style=invisible; fixedsize=true; width=0; height=0;];
+    2 [style=invisible; fixedsize=true; width=0; height=0;];
+    3 [style=invisible; fixedsize=true; width=0; height=0;];
+    4 [style=invisible; fixedsize=true; width=0; height=0;];
+    1 -> 2 -> 3 -> 4 [syle=invisible; penwidth=0; arrowsize=0;];
+    rankdir = TB;
+    A:nw -> A:ne
+    B:n -> A:sw
+    C:n -> B:s
+    D:n -> C:s
+    E:n -> A:se
+    F:nw -> F:ne
+    G:nw -> G:ne
+    H:nw -> H:ne
+    {rank = same; rankdir=LR; 1; A; F; G; H;}
+    {rank = same; rankdir=LR; 2; B; E;}
+    {rank = same; rankdir=LR; 3; C;}
+    {rank = same; rankdir=LR; 4; D;}
+}

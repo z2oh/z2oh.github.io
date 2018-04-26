@@ -1,0 +1,13 @@
+digraph {
+    rankdir = TB;
+    A:nw -> A:ne
+    B:n -> A:s
+    C:nw -> C:ne
+    D:nw -> D:ne
+    E:nw -> E:ne
+    F:nw -> F:ne
+    G:nw -> G:ne
+    H:nw -> H:ne
+    {rank = min; A; C; D; E; F; G; H;}
+    {rank = same; B;}
+}
