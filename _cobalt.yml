@@ -19,7 +19,7 @@ template_extensions:
     - md
     - liquid
 ignore:
-    - README.md
+    - README.MD
     - "_build/*"
     - ".git/*"
 syntax_highlight:
