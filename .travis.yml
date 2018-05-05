@@ -1,6 +1,6 @@
 sudo: true
 before_script:
-  - curl https://raw.githubusercontent.com/z2oh/cobalt_temp/master/cobalt --output cobalt && chmod +x cobalt && mkdir ~/.cargo && mkdir ~/.cargo/bin && cp cobalt ~/.cargo/bin/cobalt
+  - curl https://raw.githubusercontent.com/z2oh/cobalt_temp/master/cobalt --output cobalt && chmod +x cobalt && mkdir ~/.cargo && mkdir ~/.cargo/bin && mv cobalt ~/.cargo/bin/cobalt
   - export PATH="$PATH:~/.cargo/bin"
 script:
 - cobalt build
