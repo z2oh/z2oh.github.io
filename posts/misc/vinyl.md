@@ -25,6 +25,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Jeff Rosenstock | POST |
 | Kendrick Lamar | DAMN. |
 | Kendrick Lamar | good kid, m.A.A.d city |
+| La Sera | Music for Listening to Music to |
 | Mac Demarco | Another One |
 | Meatbodies | Meatbodies |
 | MGMT | Oracular Spectacular |
@@ -32,6 +33,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Neutral Milk Hotel | In the Aeroplane Over the Sea |
 | Nirvana | Nevermind |
 | of Montreal | White is Relic/Irrealis Mood |
+| Owen | Ghost Town |
 | Parquet Courts | Light up Gold |
 | Parquet Courts | Sunbathing Animal |
 | Pink Floyd | Dark Side of the Moon |
@@ -60,4 +62,5 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Walter Mitty and his Makeshift Orchestra | Every Town Needs a Cowboy |
 | Walter Mitty and his Makeshift Orchestra | Overwhelmed and Underdressed |
 | Walter Mitty and his Makeshift Orchestra | Well Soon |
+| Xiu Xiu | Fabulous Muscles |
 | Yung Lean | Unknown Memory |
