@@ -75,6 +75,15 @@ nav a.menu-item {
     color: #000;
 }
 
+.menu-item.lab {
+    border-left: 4px solid #d5f7e1;
+}
+
+.menu-item.lab.current, .menu-item.lab:hover {
+    background-color: #d5f7e1;
+    color: #000;
+}
+
 .menu-item.github {
     border-left: 4px solid #ecfee8;
 }
