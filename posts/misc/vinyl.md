@@ -22,7 +22,9 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Fidlar | Fidlar |
 | Foster the People | Torches |
 | Fuzz | Fuzz |
+| Grimes | Art Angels |
 | Jeff Rosenstock | POST |
+| Jeff Rosenstock | Worry. |
 | Kendrick Lamar | DAMN. |
 | Kendrick Lamar | good kid, m.A.A.d city |
 | La Sera | Music for Listening to Music to |
@@ -36,6 +38,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Owen | Ghost Town |
 | Parquet Courts | Light up Gold |
 | Parquet Courts | Sunbathing Animal |
+| Parquet Courts | Wide Awake! |
 | Pink Floyd | Dark Side of the Moon |
 | Post Animal | When I Think of You in a Castle |
 | Pup | The Dream is Over |
