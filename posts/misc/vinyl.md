@@ -2,6 +2,7 @@ layout: post.liquid
 title: vinyl collection
 description: A list of all the vinyl in my collection.
 data:
+    link_type: internal
     route: misc
     type: misc
 ---

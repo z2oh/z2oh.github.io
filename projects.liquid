@@ -7,7 +7,7 @@ data:
     {% for post in collections.posts.pages %}
         {% if post.data.type == "project" %}
             <li>
-                <a href="{{ post.permalink }}"><h3>{{ post.title }}</h3></a>
+                <a href="{{ post.permalink }}"><h3>{% case post.data.link_type %}{% when "external" %}[➚] {% when "pdf" %}[PDF] {% endcase %}{{ post.title }}</h3></a>
                 <p>{{ post.description }}</p>
                 <hr>
             </li>

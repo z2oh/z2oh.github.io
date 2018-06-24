@@ -3,6 +3,7 @@ title: Solutions to the USC Spring 2018 Code-a-Thon
 published_date: 2018-04-25 00:00:00 -0500
 description: A very in-depth breakdown of the solutions to the upper division Code-a-Thon problems for the USC Spring 2018 Code-a-Thon. Each solution is thoroughly and rigorously explained with analysis, methodology, and code. Some programming experience is expected, though this was written for the audience of first-year computer science student in mind.
 data:
+    link_type: internal
     route: feed
     type: blog
     published_date_friendly: April 25th, 2018
