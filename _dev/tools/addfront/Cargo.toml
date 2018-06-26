@@ -6,4 +6,3 @@ authors = ["Jeremy Day <jadaytime@gmail.com>"]
 [dependencies]
 walkdir = "2"
 dialoguer = "0"
-mktemp = "0"
