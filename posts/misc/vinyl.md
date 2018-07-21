@@ -16,6 +16,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | Bass Drum of Death |
 | Bass Drum of Death | GB City |
 | Bass Drum of Death | Rip This |
+| Car Seat Headrest | Teens Of Denial |
 | Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
 | Childish Gambino | Camp |
@@ -66,5 +67,6 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Walter Mitty and his Makeshift Orchestra | Every Town Needs a Cowboy |
 | Walter Mitty and his Makeshift Orchestra | Overwhelmed and Underdressed |
 | Walter Mitty and his Makeshift Orchestra | Well Soon |
+| White Rabbits | It's Frightening |
 | Xiu Xiu | Fabulous Muscles |
 | Yung Lean | Unknown Memory |
