@@ -16,6 +16,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | Bass Drum of Death |
 | Bass Drum of Death | GB City |
 | Bass Drum of Death | Rip This |
+| Beirut | The Flying Club Cup |
 | Car Seat Headrest | Teens Of Denial |
 | Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
