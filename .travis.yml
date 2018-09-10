@@ -1,7 +1,8 @@
-sudo: true
+sudo: false
 before_script:
-  - curl https://raw.githubusercontent.com/z2oh/cobalt_temp/master/cobalt --output cobalt && chmod +x cobalt && mkdir ~/.cargo && mkdir ~/.cargo/bin && mv cobalt ~/.cargo/bin/cobalt
-  - export PATH="$PATH:~/.cargo/bin"
+- curl -LSfs https://japaric.github.io/trust/install.sh | sh -s -- --git cobalt-org/cobalt.rs
+  --crate cobalt --force --target x86_64-unknown-linux-gnu --tag v0.12.2
+- export PATH="$PATH:~/.cargo/bin"
 script:
 - cobalt build
 deploy:
