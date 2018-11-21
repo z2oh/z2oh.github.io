@@ -15,6 +15,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Animal Collective | Strawberry Jam |
 | Bass Drum of Death | Bass Drum of Death |
 | Bass Drum of Death | GB City |
+| Bass Drum of Death | Just Business |
 | Bass Drum of Death | Rip This |
 | Beirut | The Flying Club Cup |
 | Car Seat Headrest | Teens Of Denial |
@@ -26,6 +27,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Foster the People | Torches |
 | Fuzz | Fuzz |
 | Grimes | Art Angels |
+| Jank | Versace Summer |
 | Jeff Rosenstock | POST |
 | Jeff Rosenstock | Worry. |
 | Kendrick Lamar | DAMN. |
@@ -59,7 +61,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Terror Pigeon | We Will Never Run Out of Love! |
 | The Terror Pigeon Dance Revolt | I Love You! I Love You!... Have an Awesome Day! Have the Best Day of Your Life! |
 | together PANGEA | Badillac |
-| Toro Y Moi |  Boo Boo |
+| Toro Y Moi | Boo Boo |
 | Ty Segall | Melted |
 | Ty Segall | Ty Rex |
 | Vampire Weekend | Vampire Weekend |
