@@ -163,9 +163,9 @@ Let's see some code!
 
 ```python
 n = int(input())
- 
+
 ans = ""
- 
+
 # While we are not at the root node...
 while n > 1:
     if n % 3 == 0:
@@ -246,7 +246,7 @@ Each input may have more than one test case (a test case looks like the example 
 
 ##### Disjoint-set Forests
 
-Before we discuss Kruskal's algorithm, we must first discuss the data structure that lies at its core: the [disjoint-set forest](https://en.wikipedia.org/wiki/Disjoint-set_data_structure). The disjoint-set forest is a data structure that can be used to keep track of sets of items. Kruskal's algorithm treats connected componenets of graphs as sets, with the nodes in these components being the members of the set. If there exists some path (series of edges) between two nodes in the graph, then these two nodes are part of the same set. The disjoint-set forest has three essential operations: $MakeSet$, $Find$, and $Union$. 
+Before we discuss Kruskal's algorithm, we must first discuss the data structure that lies at its core: the [disjoint-set forest](https://en.wikipedia.org/wiki/Disjoint-set_data_structure). The disjoint-set forest is a data structure that can be used to keep track of sets of items. Kruskal's algorithm treats connected componenets of graphs as sets, with the nodes in these components being the members of the set. If there exists some path (series of edges) between two nodes in the graph, then these two nodes are part of the same set. The disjoint-set forest has three essential operations: $MakeSet$, $Find$, and $Union$.
 
 $MakeSet$ makes a new *set* which is kept track of internally as a tree. Each node of this tree is a member of the same set. Each node of the tree has a couple of properties: a pointer to its parent node, and a numerical value called the rank of the node (more on that later). Calling $MakeSet$ will initialize a set with a single node in its tree. This node should be initialized with rank `0` and with the parent property pointing to itself.
 
@@ -450,7 +450,7 @@ for _ in range(T):
     # num is the number of vertices in our graph.
     num = int(input())
 
-    # We maintain a set of the vertices, to make sure we have the ids for 
+    # We maintain a set of the vertices, to make sure we have the ids for
     # each one.
     vertices = set()
 
@@ -545,7 +545,7 @@ A [common subsequence](https://en.wikipedia.org/wiki/Subsequence#Common_subseque
 
 For example, given the sequences $A = \langle 1, 2, 3, 1, 2, 3 \rangle$, $B = \langle 1, 1, 1, 1, 2, 2, 1, 1 \rangle$, $C = \langle 1, 1, 2, 2, 2, 3 \rangle$, a $LCS$ of $A$, $B$, and $C$ is $\langle 1, 1, 2 \rangle$. Note that this is not the only $LCS$ of $A$, $B$, and $C$. For example, $\langle 1, 2, 2 \rangle$ also fits the critera. Both of these have length three, and there is no length four subsequence that is common to $A$, $B$, and $C$.
 
-##### naïve solution
+##### Naïve solution
 
 The naïve algorithm to solve this problem finds every possible subsequence of the shortest input string, and checks each one for its existence in the other two input strings. If the subsequences are calcuated in decreasing order of length (starting with the entire sequence, then all subsequences with length one shorter than the sequence, etc.), then as soon as we find a match we return right away. If we exhaust all possible subsequences, then we return the empty sequence. This algorithm is a fairly intuitive brute force solution. The time it takes for this solution to solve the problem grows with the number of subsequences of the shortest input string. For each subsequence, we do a linear amount of work to check if the subsequence is a subsequence of the other input strings. So how many subsequences does a sequence of length $n$ have?
 
@@ -649,7 +649,7 @@ Our input sequences will be [`KERNIGHAN`](https://en.wikipedia.org/wiki/Brian_Ke
 
 </center>
 
-We have all possible combinations of subsequences of our two inputs here. Note that this includes the empty sequence. We know that the length of the longest LCS between the emtpy sequence and any sequence is 0, so we fill in these entries with a 0. 
+We have all possible combinations of subsequences of our two inputs here. Note that this includes the empty sequence. We know that the length of the longest LCS between the emtpy sequence and any sequence is 0, so we fill in these entries with a 0.
 
 <center class="lcs-table" style="overflow: auto;">
 
@@ -764,7 +764,7 @@ Now for `I` and `N` we have a three way tie for our recursive calls. I will choo
 | `K` | $0$ | $\uparrow 0$ | $\uparrow 0$   |     |     |     |     |     |
 | `E` | $0$ | $\uparrow 0$ | $\uparrow 0$   |     |     |     |     |     |
 | `R` | $0$ | $\nwarrow 1$ | $\leftarrow 1$ |     |     |     |     |     |
-| `N` | $0$ | $\uparrow 1$ | $\uparrow 0$   |     |     |     |     |     |
+| `N` | $0$ | $\uparrow 1$ | $\uparrow 1$   |     |     |     |     |     |
 | `I` | $0$ | $\uparrow 1$ | $\nwarrow 2$    |     |     |     |     |     |
 | `G` | $0$ | $\uparrow 1$ |     |     |     |     |     |     |
 | `H` | $0$ | $\uparrow 1$ |     |     |     |     |     |     |
@@ -894,7 +894,7 @@ class Entry:
     # By default, an entry has no set direction and a value of 0.
     def __init__(self):
         self.direction = Direction.UNSET
-        self.val = 0 
+        self.val = 0
 
 # The direction scheme here points to an adjacent entry in the table.
 # For example, XZ implies the direction back one x coordinate and back one
@@ -981,7 +981,7 @@ print(table[x_max][y_max][z_max].val)
     # elif current_direction == Direction.YZ:
         # current_y = current_y - 1
         # current_z = current_z - 1
-# 
+#
 # longest.reverse()
 # print(''.join(longest))
 ```
@@ -1100,7 +1100,7 @@ A little less than a month later, I received this e-mail:
 
 Looks like they have acknowledged the error! As of writing this (April 25th) the article in question still has not been updated, but I have hopes that it will get fixed soon. Hopefully before some poor geometry student fails a homework!
 
-Anyway, the algorithm for finding the area of a convex polygon is quite simple, especially if the points of the polygon are already sorted in counterclockwise order (like they are after Graham's scan). It wasn't until after the Code-a-Thon that I learned that there is a well known name for the method that I employed: the [shoelace algorithm](https://en.wikipedia.org/wiki/Shoelace_formula). 
+Anyway, the algorithm for finding the area of a convex polygon is quite simple, especially if the points of the polygon are already sorted in counterclockwise order (like they are after Graham's scan). It wasn't until after the Code-a-Thon that I learned that there is a well known name for the method that I employed: the [shoelace algorithm](https://en.wikipedia.org/wiki/Shoelace_formula).
 
 Essentially, the way the shoelace algorithm works is by breaking the polygon into triangles, calculating the area of the rectangle around each triangle, and then subtracting the areas of each region in the rectangle that is not part of the triangle (of which there are exactly three). Wikipedia provides a good explanation of how this works in the [proofs section](https://en.wikipedia.org/wiki/Shoelace_formula#Proofs) of the page linked above.
 
@@ -1261,7 +1261,7 @@ $$
 $$
 1, 2, 6
 $$
- 
+
 Back to the first stack. Let's take two more.
 
 $$
@@ -1552,7 +1552,7 @@ for _ in range(t):
     # We keep track of the number of sequences we have found in `count`.
     count = 0
 
-    # For each zucchini, if we have not seen the previous zucchini 
+    # For each zucchini, if we have not seen the previous zucchini
     # (with height - 1) we increase our count by 1. We then set the value for
     # our next zucchini (with height + 1) to True, indicating we expect to see
     # it further along in the sequence.
@@ -1562,7 +1562,7 @@ for _ in range(t):
         expect_next[h + 1] = True
 
     # We take the ceiling of the log_2 of count...
-    log = 0 
+    log = 0
     while 1 << log < count:
         log += 1
 
