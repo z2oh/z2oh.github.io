@@ -32,6 +32,10 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Jeff Rosenstock | Worry. |
 | Kendrick Lamar | DAMN. |
 | Kendrick Lamar | good kid, m.A.A.d city |
+| Kero Kero Bonito | Bonito Generation |
+| Kero Kero Bonito | Flamingo |
+| Kero Kero Bonito | Time 'n' Place |
+| Kero Kero Bonito | TOTEP |
 | La Sera | Music for Listening to Music to |
 | Mac Demarco | Another One |
 | Meatbodies | Meatbodies |
@@ -65,6 +69,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Ty Segall | Melted |
 | Ty Segall | Ty Rex |
 | Vampire Weekend | Vampire Weekend |
+| Vundabar | Antics |
 | Walter Etc. | Gloom Cruise |
 | Walter Mitty and his Makeshift Orchestra | Cliche Definitions of Success |
 | Walter Mitty and his Makeshift Orchestra | Every Town Needs a Cowboy |
