@@ -1,3 +1,4 @@
+---
 layout: empty.liquid
 title: rust 101 - tooling and ecosystem
 published_date: 2018-03-01 00:00:00 -0500

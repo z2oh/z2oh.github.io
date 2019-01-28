@@ -1,3 +1,4 @@
+---
 layout: empty.liquid
 title: Using k-d trees to efficiently calculate nearest neighbors in 3D vector space
 published_date: 2018-02-14 00:00:00 -0500

@@ -1,3 +1,4 @@
+---
 layout: post-math.liquid
 title: Solutions to the USC Spring 2018 Code-a-Thon
 published_date: 2018-04-25 00:00:00 -0500
@@ -54,7 +55,7 @@ $$\sum_{i=0}^{n} \frac{1}{i!}$$
 
 which converges to [$e$](https://en.wikipedia.org/wiki/E_(mathematical_constant)) when $n = \infty$.
 
-The question asks the programmer to output the value of this formula for various values of $n$ (with $1 \leq n \leq 2^{2^{2^{2^{2}}}}$), **rounded to six decimal places**. The upper bound for $n$ is a 19729 digit decimal number, which gives a hint that performing any real computation with $n$ is infeasible. Let's look at a table of corresponding values of $n$ and $f(n)$ (which is $n$ applied to the formula above):
+The question asks the programmer to output the value of this formula for various values of $n$ (with $1 \leq n \leq 2^{2^{2^{2^{2} } } }$), **rounded to six decimal places**. The upper bound for $n$ is a 19729 digit decimal number, which gives a hint that performing any real computation with $n$ is infeasible. Let's look at a table of corresponding values of $n$ and $f(n)$ (which is $n$ applied to the formula above):
 
 <center>
 
@@ -217,7 +218,7 @@ So what is a MST anyway? Let's formalize. Let $G = (V, E)$ be a connected graph 
 Let $G_{MST}$ be a minimum spanning tree of $G$. Let $ST_{G}$ be the collection of all spanning trees of $G$. $G_{MST}$ must have the following properties:
 
 * $G_{MST} \in ST_{G}$ *A MST of $G$ is also a ST of $G$.*
-* $\forall G_{ST} \subseteq ST_{G},$ $\sum_{x \in G_{ST}} x_{w}$ $\geq$ $\sum_{x \in G_{MST}} x_w$ where $x_w$ is the weight of edge $x$. *The weights of the edges in a MST of $G$ must be less than or equal to the sum of weights in any spanning tree of $G$. This means that $G_{MST}$ minimizes the weights of a spanning tree of G, which is where the minimum spanning tree gets its name.*
+* $\forall G_{ST} \subseteq ST_{G},$ $\sum_{x \in G_{ST} } x_{w}$ $\geq$ $\sum_{x \in G_{MST} } x_w$ where $x_w$ is the weight of edge $x$. *The weights of the edges in a MST of $G$ must be less than or equal to the sum of weights in any spanning tree of $G$. This means that $G_{MST}$ minimizes the weights of a spanning tree of G, which is where the minimum spanning tree gets its name.*
 
 That was a lot of mathematical notation to describe what is a reasonably simple concept. In short, a minimum spanning tree of a connected graph is a collection of edges such that every node in the graph has a single path to every other node in the graph, and no other collection of edges with this property has a lower sum of weights. Note that I was careful to say **a** MST and not **the** MST. MSTs are not guaranteed to be unique, which is why this problem asks for the sum of weights of a MST rather than some set of edges comprising a MST. All MSTs for a given graph have the same sum of weights. This can be concluded directly from the second condition above.
 

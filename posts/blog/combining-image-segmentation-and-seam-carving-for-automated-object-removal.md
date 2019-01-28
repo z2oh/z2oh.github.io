@@ -1,3 +1,4 @@
+---
 layout: empty.liquid
 title: Combining image segmentation and seam carving for automated object removal
 published_date: 2018-06-24 00:00:00 -0500
