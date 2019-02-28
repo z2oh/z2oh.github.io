@@ -1,4 +1,3 @@
----
 layout: post.liquid
 title: vinyl collection
 description: A list of all the vinyl in my collection.
@@ -19,11 +18,14 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | Just Business |
 | Bass Drum of Death | Rip This |
 | Beirut | The Flying Club Cup |
+| Black Marble | A Different Arrangement |
+| Black Marble | It's Immaterial |
 | Car Seat Headrest | Teens Of Denial |
 | Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
 | Childish Gambino | Camp |
 | Death Grips | The Money Store |
+| Earl Sweatshirt | Some Rap Songs |
 | Fidlar | Fidlar |
 | Foster the People | Torches |
 | Fuzz | Fuzz |
@@ -71,6 +73,9 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Ty Segall | Ty Rex |
 | Vampire Weekend | Vampire Weekend |
 | Vundabar | Antics |
+| Vundabar | Antics |
+| Vundabar | Gawk |
+| Vundabar | Smell Smoke |
 | Walter Etc. | Gloom Cruise |
 | Walter Mitty and his Makeshift Orchestra | Cliche Definitions of Success |
 | Walter Mitty and his Makeshift Orchestra | Every Town Needs a Cowboy |
