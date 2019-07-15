@@ -53,6 +53,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Parquet Courts | Wide Awake! |
 | Pink Floyd | Dark Side of the Moon |
 | Post Animal | When I Think of You in a Castle |
+| Pup | Morbid Stuff |
 | Pup | The Dream is Over |
 | Slayer | Reign in Blood |
 | Sufjan Stevens | Carrie and Lowell |
@@ -71,8 +72,8 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Toro Y Moi | Boo Boo |
 | Ty Segall | Melted |
 | Ty Segall | Ty Rex |
+| Vampire Weekend | Father of the Bride |
 | Vampire Weekend | Vampire Weekend |
-| Vundabar | Antics |
 | Vundabar | Antics |
 | Vundabar | Gawk |
 | Vundabar | Smell Smoke |
