@@ -67,6 +67,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Tame Impala | Lonerism |
 | Terror Pigeon | Live it Up Before you Die it Up |
 | Terror Pigeon | We Will Never Run Out of Love! |
+| The Frights | The Frights |
 | The Terror Pigeon Dance Revolt | I Love You! I Love You!... Have an Awesome Day! Have the Best Day of Your Life! |
 | together PANGEA | Badillac |
 | Toro Y Moi | Boo Boo |
