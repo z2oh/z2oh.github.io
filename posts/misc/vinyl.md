@@ -11,6 +11,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | **Artist** | **Album** |
 | :-- | --- |
 | Adult Mom | Momentary Lapse of Happily |
+| Animal Collective | Merriweather Post Pavillion |
 | Animal Collective | Painting With |
 | Animal Collective | Strawberry Jam |
 | Bass Drum of Death | Bass Drum of Death |
@@ -18,12 +19,15 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Bass Drum of Death | Just Business |
 | Bass Drum of Death | Rip This |
 | Beirut | The Flying Club Cup |
+| Bing Crosby | Merry Christmas |
 | Black Marble | A Different Arrangement |
 | Black Marble | It's Immaterial |
+| Capella Antiquia | Voices of the Middle Ages |
 | Car Seat Headrest | Teens Of Denial |
 | Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
 | Childish Gambino | Camp |
+| Culture Club | Kissing to be Clever |
 | Death Grips | The Money Store |
 | Earl Sweatshirt | Some Rap Songs |
 | Fidlar | Fidlar |
@@ -55,7 +59,9 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Post Animal | When I Think of You in a Castle |
 | Pup | Morbid Stuff |
 | Pup | The Dream is Over |
+| Simon and Garfunkel | Parsley, Sage, Rosemary, and Thyme |
 | Slayer | Reign in Blood |
+| Snail Mail | Lush |
 | Sufjan Stevens | Carrie and Lowell |
 | Sufjan Stevens | Illinois |
 | Sufjan Stevens | Planetarium |
@@ -67,6 +73,7 @@ I've been collecting vinyl since I got my <a href="http://www.project-audio.com/
 | Tame Impala | Lonerism |
 | Terror Pigeon | Live it Up Before you Die it Up |
 | Terror Pigeon | We Will Never Run Out of Love! |
+| The Beatles | The White Album |
 | The Frights | The Frights |
 | The Terror Pigeon Dance Revolt | I Love You! I Love You!... Have an Awesome Day! Have the Best Day of Your Life! |
 | together PANGEA | Badillac |
