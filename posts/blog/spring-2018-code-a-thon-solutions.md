@@ -353,7 +353,7 @@ Union(A,B)
 
 There are three conditions here. If the rank of the set containing $A$ is less than the rank of the set containing $B$, then we change $A$'s tree's root parent pointer to point to $B$'s tree's root, as the tree containing $A$ is shorter than the tree containing $B$. If the rank of the set containing $B$ is less than the rank of the set containing $A$, we do the opposite: appending the tree containing $B$ to the root of the tree containing $A$. If the two ranks are equal, there is nothing clever we can do. We simply append one tree to the other and then increment the rank of the new root node (as the full tree's height now increased by one). Union by rank prevents us from growing our trees in a linear fashion like we did in the example above.
 
-Together, path compression and union by rank improve the amortized time complexity for our $Find$ and $Union$ operations from $\mathcal{O}(n)$ to $\mathcal{O}(\alpha(n)$, which is just $\mathcal{O}(1)$ for any practical $n$. I will not present the analysis that leads to these results, but the third edition of CLRS covers it in depth in section 21.4 (it takes them eight and a half pages).
+Together, path compression and union by rank improve the amortized time complexity for our $Find$ and $Union$ operations from $\mathcal{O}(n)$ to $\mathcal{O}(\alpha(n))$, which is just $\mathcal{O}(1)$ for any practical $n$. I will not present the analysis that leads to these results, but the third edition of CLRS covers it in depth in section 21.4 (it takes them eight and a half pages).
 
 ##### Kruskal's Algorithm
 
