@@ -34,7 +34,9 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Foster the People | Torches |
 | Fuzz | Fuzz |
 | Grimes | Art Angels |
+| Jack Stauber | Pop Food |
 | Jank | Versace Summer |
+| Jay Som | Anak Ko |
 | Jeff Rosenstock | POST |
 | Jeff Rosenstock | Worry. |
 | Kendrick Lamar | DAMN. |
@@ -62,6 +64,7 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Simon and Garfunkel | Parsley, Sage, Rosemary, and Thyme |
 | Slayer | Reign in Blood |
 | Snail Mail | Lush |
+| STRFKR | Being No One, Going Nowhere |
 | Sufjan Stevens | Carrie and Lowell |
 | Sufjan Stevens | Illinois |
 | Sufjan Stevens | Planetarium |
@@ -80,6 +83,7 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Toro Y Moi | Boo Boo |
 | Ty Segall | Melted |
 | Ty Segall | Ty Rex |
+| Tyler the Creator | IGOR |
 | Vampire Weekend | Father of the Bride |
 | Vampire Weekend | Vampire Weekend |
 | Vundabar | Antics |
