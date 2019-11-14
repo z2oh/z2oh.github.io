@@ -53,6 +53,9 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Neutral Milk Hotel | In the Aeroplane Over the Sea |
 | Nirvana | Nevermind |
 | of Montreal | White is Relic/Irrealis Mood |
+| Omni | Deluxe |
+| Omni | Multi-task |
+| Omni | Networker |
 | Owen | Ghost Town |
 | Parquet Courts | Light up Gold |
 | Parquet Courts | Sunbathing Animal |
