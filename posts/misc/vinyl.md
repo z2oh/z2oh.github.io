@@ -74,6 +74,7 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Sufjan Stevens | The Age of Adz |
 | Superorganism | Something for Your M.I.N.D. |
 | Superorganism | Superorganism |
+| Surf Curse | Heaven Surrounds You |
 | Tame Impala | Currents |
 | Tame Impala | Innerspeaker |
 | Tame Impala | Lonerism |
