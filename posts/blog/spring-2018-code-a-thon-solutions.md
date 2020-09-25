@@ -2,14 +2,12 @@
 layout: post-math.liquid
 title: Solutions to the USC Spring 2018 Code-a-Thon
 published_date: 2018-04-25 00:00:00 -0500
-description: A very in-depth breakdown of the solutions to the upper division Code-a-Thon problems for the USC Spring 2018 Code-a-Thon. Each solution is thoroughly and rigorously explained with analysis, methodology, and code. Some programming experience is expected, though this was written for the audience of first-year computer science student in mind.
 data:
     link_type: internal
     route: feed
     type: blog
     published_date_friendly: April 25th, 2018
 ---
-## Introduction
 
 It isn't necessary to have read [CLRS](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) cover-to-cover to be able to compete in Code-a-Thons, although owning a copy certainly helps. Many of this year's problems were conceived while flipping through these pages, thinking up back stories for questions whose solutions were in pseudocode in front of me. I wrote one fewer question than I had intended to this semester, although only two out of the 71 participants in the upper division were able to complete the problem set, so it would seem the overall competition difficulty was ideal. With one finisher clocking in at just under nine hours (wow!) and the other at just over 23 hours (although analysis of submission times indicates a much deserved sleeping break), the competition provided a difficult challenge that was not insurmountable for our quick witted competitors. I am extremely satisfied with the performance of this semester's participants, and I thank the USC ACM chapter for their efforts in organizing the event, and to the [University of South Carolina](http://sc.edu) and [Krumware](http://krum.io) for their support.
 

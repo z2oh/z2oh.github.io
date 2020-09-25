@@ -14,6 +14,7 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Animal Collective | Merriweather Post Pavillion |
 | Animal Collective | Painting With |
 | Animal Collective | Strawberry Jam |
+| Arcade Fire | The Suburbs |
 | Bass Drum of Death | Bass Drum of Death |
 | Bass Drum of Death | GB City |
 | Bass Drum of Death | Just Business |
@@ -27,6 +28,8 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Childish Gambino | Awaken, My Love! |
 | Childish Gambino | Because the Internet |
 | Childish Gambino | Camp |
+| Courtney Barnett | Sometimes I Sit and Think, and Sometimes I Just Sit |
+| Crumb | Locket |
 | Culture Club | Kissing to be Clever |
 | Death Grips | The Money Store |
 | Earl Sweatshirt | Some Rap Songs |
@@ -68,6 +71,7 @@ I've been collecting vinyl since I got my <a href="https://www.project-audio.com
 | Slayer | Reign in Blood |
 | Snail Mail | Lush |
 | STRFKR | Being No One, Going Nowhere |
+| STRFKR | Future Past Life |
 | Sufjan Stevens | Carrie and Lowell |
 | Sufjan Stevens | Illinois |
 | Sufjan Stevens | Planetarium |

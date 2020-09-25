@@ -4,14 +4,14 @@ layout: default.liquid
 data:
     route: feed
 ---
-<ul class="feed-list main-list">
+<p>Jeremy Day. Programmer. Interested in Rust. One day, "coding" and "programming" will mean different things.</p>
+</br>
+<ul class="main-list">
     {% for post in collections.posts.pages %}
         {% if post.data.type == "blog" %}
-            <li>
-                <a href="{{ post.permalink }}"><h3>{% case post.data.link_type %}{% when "external" %}[➚] {% when "pdf" %}[PDF] {% endcase %}{{ post.title }}</h3></a>
-                <h5>{{ post.data.published_date_friendly }}</h5>
-                <p>{{ post.description }}</p>
-                <hr>
+            <li class="main-list-link-type-{{ post.data.link_type }}">
+                <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
+                <h5 class="post-date">{{ post.data.published_date_friendly }}</h5>
             </li>
         {% endif %}
     {% endfor %}
