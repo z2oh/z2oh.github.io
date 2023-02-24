@@ -13,13 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install cobalt
-      run: curl -LSfs https://japaric.github.io/trust/install.sh | sh -s -- --git cobalt-org/cobalt.rs--crate cobalt --force --target x86_64-unknown-linux-gnu --tag v0.15.1
+    - uses: actions/checkout@master
+    
+    - name: Checkout cobalt
+      with:
+        repository: cobalt-org/cobalt.rs
+        path: cobaltrs
+        
+    - name: Build cobalt
+      working-directory: ./cobaltrs
+      run: cargo build --release
       
     - name: Build site
-      run: cobalt build
-      
-    - uses: actions/checkout@master
+      run: ./cobaltrs/target/release/cobalt build
 
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
