@@ -22,7 +22,7 @@ jobs:
         path: _cobaltrs
         
     - name: Build cobalt
-      working-directory: ./cobaltrs
+      working-directory: ./_cobaltrs
       run: cargo build --release
       
     - name: Build site
