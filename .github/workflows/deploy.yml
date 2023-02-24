@@ -19,14 +19,14 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: cobalt-org/cobalt.rs
-        path: cobaltrs
+        path: _cobaltrs
         
     - name: Build cobalt
       working-directory: ./cobaltrs
       run: cargo build --release
       
     - name: Build site
-      run: ./cobaltrs/target/release/cobalt build
+      run: ./_cobaltrs/target/release/cobalt build
 
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
