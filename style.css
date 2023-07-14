@@ -4,24 +4,39 @@ html {
 }
 
 @font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: url('/assets/fonts/work-sans-v8-latin-regular.woff2') format('woff2');
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/work-sans-v8-latin-regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: 400;
-  src: url('/assets/fonts/fira-code-v9-latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2') format('woff2');
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/fira-code-v9-latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2') format('woff2');
 }
 
-html, body {
+html,
+body {
     line-height: 1.6;
     font-weight: 400;
     font-family: "Work Sans", sans-serif;
     margin: 0;
+}
+
+.social-link {
+    margin-right: 8px;
+}
+
+#github-social {
+    content: url('/assets/svg/github.svg');
+    width: 24px;
+}
+
+#linkedin-social {
+    content: url('/assets/svg/linkedin.svg');
+    width: 24px;
 }
 
 code {
@@ -35,7 +50,7 @@ code {
     border-radius: 4px;
 }
 
-pre > code {
+pre>code {
     display: block;
     padding: 1rem 1.5rem;
     white-space: pre;
@@ -53,16 +68,16 @@ main {
 }
 
 .main-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .main-list-link-type-pdf::before {
-  content: url('/assets/svg/bxs-file-pdf.svg');
-  position: absolute;
-  margin-left: -2.6rem;
-  margin-top: 0.4rem;
+    content: url('/assets/svg/bxs-file-pdf.svg');
+    position: absolute;
+    margin-left: -2.6rem;
+    margin-top: 0.4rem;
 }
 
 .post-date {
