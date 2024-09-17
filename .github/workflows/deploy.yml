@@ -15,23 +15,23 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
-    - name: Checkout cobalt
-      uses: actions/checkout@master
-      with:
-        repository: cobalt-org/cobalt.rs
-        path: _cobaltrs
+    #- name: Checkout cobalt
+    #  uses: actions/checkout@master
+    #  with:
+    #    repository: cobalt-org/cobalt.rs
+    #    path: _cobaltrs
         
-    - name: Build cobalt
-      working-directory: ./_cobaltrs
-      run: cargo build --release
+    #- name: Build cobalt
+    #  working-directory: ./_cobaltrs
+    #  run: cargo build --release
       
-    - name: Build site
-      run: ./_cobaltrs/target/release/cobalt build
+    #- name: Build site
+    #  run: ./_cobaltrs/target/release/cobalt build
 
-    - name: Deploy
-      uses: s0/git-publish-subdir-action@develop
-      env:
-        REPO: self
-        BRANCH: master
-        FOLDER: _build
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #- name: Deploy
+    #  uses: s0/git-publish-subdir-action@develop
+    #  env:
+    #    REPO: self
+    #    BRANCH: master
+    #    FOLDER: _build
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
